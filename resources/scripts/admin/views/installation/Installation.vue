@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col items-center justify-between w-full pt-10">
     <img
-      id="logo-crater"
-      src="/img/crater-logo.png"
+      id="logo"
+      src="/img/logo.png"
       alt="Crater Logo"
       class="h-12 mb-5 md:mb-10"
     />

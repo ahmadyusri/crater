@@ -43,7 +43,7 @@ function get_page_title($company_id)
     $routeName = Route::currentRouteName();
 
     $pageTitle = null;
-    $defaultPageTitle = 'Crater - Self Hosted Invoicing Platform';
+    $defaultPageTitle = config('app.name') . ' - Invoicing Platform';
 
     if (\Storage::disk('local')->has('database_created')) {
         if ($routeName === 'customer.dashboard') {
@@ -142,9 +142,9 @@ function format_money_pdf($money, $currency = null)
 
     $currency_with_symbol = '';
     if ($currency->swap_currency_symbol) {
-        $currency_with_symbol = $format_money.'<span style="font-family: DejaVu Sans;">'.$currency->symbol.'</span>';
+        $currency_with_symbol = $format_money . '<span style="font-family: DejaVu Sans;">' . $currency->symbol . '</span>';
     } else {
-        $currency_with_symbol = '<span style="font-family: DejaVu Sans;">'.$currency->symbol.'</span>'.$format_money;
+        $currency_with_symbol = '<span style="font-family: DejaVu Sans;">' . $currency->symbol . '</span>' . $format_money;
     }
 
     return $currency_with_symbol;
@@ -157,7 +157,7 @@ function format_money_pdf($money, $currency = null)
 function clean_slug($model, $title, $id = 0)
 {
     // Normalize the title
-    $slug = Str::upper('CUSTOM_'.$model.'_'.Str::slug($title, '_'));
+    $slug = Str::upper('CUSTOM_' . $model . '_' . Str::slug($title, '_'));
 
     // Get any that could possibly be related.
     // This cuts the queries down by doing it once.
@@ -170,7 +170,7 @@ function clean_slug($model, $title, $id = 0)
 
     // Just append numbers like a savage until we find not used.
     for ($i = 1; $i <= 10; $i++) {
-        $newSlug = $slug.'_'.$i;
+        $newSlug = $slug . '_' . $i;
         if (! $allSlugs->contains('slug', $newSlug)) {
             return $newSlug;
         }
@@ -181,7 +181,7 @@ function clean_slug($model, $title, $id = 0)
 
 function getRelatedSlugs($type, $slug, $id = 0)
 {
-    return CustomField::select('slug')->where('slug', 'like', $slug.'%')
+    return CustomField::select('slug')->where('slug', 'like', $slug . '%')
         ->where('model_type', $type)
         ->where('id', '<>', $id)
         ->get();

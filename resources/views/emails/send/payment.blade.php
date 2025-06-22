@@ -2,11 +2,11 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => ''])
-        @if($data['company']['logo'])
-            <img class="header-logo" src="{{asset($data['company']['logo'])}}" alt="{{$data['company']['name']}}">
-        @else
-            {{$data['company']['name']}}
-        @endif
+            @if ($data['company']['logo'])
+                <img class="header-logo" src="{{ asset($data['company']['logo']) }}" alt="{{ $data['company']['name'] }}">
+            @else
+                {{ $data['company']['name'] }}
+            @endif
         @endcomponent
     @endslot
 
@@ -17,7 +17,7 @@
     @slot('subcopy')
         @component('mail::subcopy')
             {!! $data['body'] !!}
-            @if(!$data['attach']['data'])
+            @if (!$data['attach']['data'])
                 @component('mail::button', ['url' => $data['url']])
                     View Payment
                 @endcomponent
@@ -28,7 +28,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            Powered by <a class="footer-link" href="https://craterapp.com">Crater</a>
+            Powered by <a class="footer-link" href="{{ config('app.url') }}">{{ config('app.name') }}</a>
         @endcomponent
     @endslot
 @endcomponent
