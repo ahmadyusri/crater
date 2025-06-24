@@ -2,14 +2,12 @@
   <svg
     version="1.0"
     xmlns="http://www.w3.org/2000/svg"
-    width="512pt"
-    height="512pt"
     viewBox="0 0 512 512"
     preserveAspectRatio="xMidYMid meet"
   >
     <g
       transform="translate(0,512) scale(0.100000,-0.100000)"
-      fill="#6e69dd"
+      fill="url(#paint0_linear_499_29)"
       stroke="none"
     >
       <path
@@ -80,6 +78,19 @@
 15 77 8 102 -38 125 -43 22 -112 35 -127 24z"
       />
     </g>
+    <defs>
+      <linearGradient
+        id="paint0_linear_499_29"
+        x1="0"
+        y1="0"
+        x2="512"
+        y2="512"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop :stop-color="darkColor" />
+        <stop offset="1" :stop-color="lightColor" />
+      </linearGradient>
+    </defs>
   </svg>
 </template>
 
